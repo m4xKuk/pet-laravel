@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description');
             $table->string('preview_image')->nullable();
             $table->string('main_image')->nullable();
-            $table->unsignedBigInteger('author_id');
+            $table->unsignedBigInteger('user_id');
             $table->softDeletes();
             $table->timestamps();
         });

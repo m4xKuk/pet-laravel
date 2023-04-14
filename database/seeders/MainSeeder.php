@@ -24,7 +24,7 @@ class MainSeeder extends Seeder
             $post->categories()->attach($categoryIds);
 
             $userId = $users->random()->id;
-            $post->user()->associate($userId);
+            $post->author()->associate($userId);
         }
     }
 }

@@ -23,7 +23,7 @@ class PostFactory extends Factory
             'description' => $this->faker->sentence(2),
             'preview_image' => fake()->imageUrl(),
             'main_image' => fake()->imageUrl(),
-            'author_id' => User::get()->random()->id,
+            'user_id' => User::get()->random()->id,
         ];
     }
 }
