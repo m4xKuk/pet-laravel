@@ -6,3 +6,19 @@
 
 // Bootstrap
 @import 'bootstrap/scss/bootstrap';
+
+.table {
+    &.table-show{
+        tr{
+            th{
+                width: 10%;
+            }
+        }
+    }
+
+    i{
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
