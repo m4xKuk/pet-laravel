@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,14 @@ Route::get('/', function () {
 });
 
 Auth::routes();
+
+Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
+    Route::group(['namespace' => 'Admin'], function(){
+        Route::get('/', 'MainController')->name('admin.main');
+    });
+
+    Route::resource('/posts', App\Http\Controllers\Admin\PostController::class);
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
