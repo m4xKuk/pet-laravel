@@ -8,17 +8,23 @@
 @import 'bootstrap/scss/bootstrap';
 
 .table {
-    &.table-show{
-        tr{
-            th{
+    &.table-show {
+        tr {
+            th {
                 width: 10%;
             }
         }
     }
 
-    i{
-        &:hover{
+    i {
+        &:hover {
             cursor: pointer;
         }
+    }
+}
+
+.form-delete {
+    button {
+        border: none;
     }
 }

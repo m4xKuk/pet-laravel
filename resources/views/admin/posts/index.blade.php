@@ -1,6 +1,9 @@
 @extends('admin.layouts.main')
 
 @section('content')
+<div class="col-12 mb-2">
+    <a href="{{route('admin.posts.create')}}" class="btn btn-success">Create</a>
+</div>
 <div class="col-12">
     <table class="table">
         <thead>
@@ -21,7 +24,13 @@
                     <td>{{ $post->author->name }}</td>
                     <td><a href="{{route('admin.posts.show', $post)}}"><i class="far fa-eye"></i></a></td>
                     <td><i class="fas fa-edit"></i></td>
-                    <td><i class="fas fa-trash" style="color: #ff0000;"></i></td>
+                    <td>
+                        <form class="form-delete" action="{{route('admin.posts.destroy', $post)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit"><i class="fas fa-trash" style="color: #ff0000;"></i></button>
+                        </form>
+                    </td>
                 </tr>
             @endforeach
         </tbody>

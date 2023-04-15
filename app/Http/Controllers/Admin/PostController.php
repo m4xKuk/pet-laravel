@@ -3,11 +3,14 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\Post\StoreRequest;
+use App\Http\Requests\Admin\Post\UpdateRequest;
 use App\Models\Post;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class PostController extends Controller
+class PostController extends BasePostController
 {
     /**
      * Display a listing of the resource.
@@ -23,15 +26,20 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $users = User::all();
+        return view('admin.posts.create', compact('users'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreRequest $request)
     {
-        //
+        $data = $request->validated();
+
+        $post = $this->services->store($data);
+
+        return redirect()->route('admin.posts.show', $post->id);
     }
 
     /**
@@ -45,24 +53,29 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Post $post)
     {
-        //
+        $users = User::all();
+        return view('admin.posts.edit', compact('post', 'users'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateRequest $request, Post $post)
     {
-        //
+        $data = $request->validated();
+        $post = $this->services->update($data, $post);
+
+        return view('admin.posts.show', compact('post'));
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Post $post)
     {
-        //
+        $post->delete();
+        return redirect()->route('admin.posts.index');
     }
 }

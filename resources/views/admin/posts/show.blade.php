@@ -17,11 +17,13 @@
                 </tr>
                 <tr>
                     <th scope="col">Description</th>
-                    <td>{{ $post->description }}</td>
+                    <td>{!! $post->description !!}</td>
                 </tr>
                 <tr>
                     <th scope="col">Image</th>
-                    <td><img src="{{ $post->preview_image }}" width="200" alt="..." class="img-thumbnail"></td>
+                    @if (!empty($post->preview_image))
+                    <td><img src="{{ Storage::disk('public')->exists($post->preview_image) ? asset('storage/' . $post->preview_image) : $post->preview_image }}" width="200" alt="..." class="img-thumbnail"></td>
+                    @endif
                 </tr>
                 <tr>
                     <th scope="col">Autor</th>
