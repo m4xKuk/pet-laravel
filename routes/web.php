@@ -26,6 +26,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function() {
     });
 
     Route::resource('/posts', App\Http\Controllers\Admin\PostController::class);
+
+    Route::resource('/categories', App\Http\Controllers\Admin\CategoryController::class);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
