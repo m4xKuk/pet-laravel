@@ -17,16 +17,17 @@
                 <label for="">Description</label>
                 <textarea id="summernote" name="description">{{ $post->description }}</textarea>
                 @error('description')
-                    <div class="text-danger">{{$message}}</div>
+                    <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="exampleInputFile">File input</label>
                 @if (!empty($post->preview_image))
-                <div>
-                    <img id="preview_image" src="{{ Storage::disk('public')->exists($post->preview_image) ? asset('storage/' . $post->preview_image) : $post->preview_image }}" alt="preview_image"
-                        class="w-25">
-                </div>
+                    <div>
+                        <img id="preview_image"
+                            src="{{ Storage::disk('public')->exists($post->preview_image) ? asset('storage/' . $post->preview_image) : $post->preview_image }}"
+                            alt="preview_image" class="w-25">
+                    </div>
                 @endif
                 <div class="input-group">
                     <div class="custom-file">
@@ -34,20 +35,29 @@
                             name="preview_image" id="exampleInputFile">
                         <label class="custom-file-label" for="exampleInputFile">Choose file</label>
                         @error('preview_image')
-                            <div class="text-danger">{{$message}}</div>
+                            <div class="text-danger">{{ $message }}</div>
                         @enderror
                     </div>
                 </div>
             </div>
             <div class="form-group">
+                <label for="exampleFormControlSelect2">Categories</label>
+                <select name="categoryIds[]" multiple class="form-control" id="exampleFormControlSelect2">
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{in_array($category->id, $categoryIds) ? 'selected' : ''}}>{{ $category->title }}</option>
+                    @endforeach
+                </select>
+            </div>
+            <div class="form-group">
                 <label for="exampleFormControlSelect2">Autor</label>
                 <select name="user_id" class="form-control" id="exampleFormControlSelect2">
                     @foreach ($users as $user)
-                        <option value="{{$user->id}}" {{$post->user_id == $user->id ? 'selected' : ''}}>{{$user->name}}</option>
+                        <option value="{{ $user->id }}" {{ $post->user_id == $user->id ? 'selected' : '' }}>
+                            {{ $user->name }}</option>
                     @endforeach
                 </select>
                 @error('user_id')
-                    <div class="text-danger">{{$message}}</div>
+                    <div class="text-danger">{{ $message }}</div>
                 @enderror
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>

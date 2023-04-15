@@ -30,6 +30,10 @@
                     <td>{{ $post->author->name }}</td>
                 </tr>
                 <tr>
+                    <th scope="col">categories</th>
+                    <td>{{ $post->categories()->pluck('title')->implode(', ') }}</td>
+                </tr>
+                <tr>
                     <th scope="col">Create</th>
                     <td>{{ \Carbon\Carbon::parse($post->created_at)->format('d/m/Y') }}</td>
                 </tr>

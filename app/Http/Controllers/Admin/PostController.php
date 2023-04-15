@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\Post\StoreRequest;
 use App\Http\Requests\Admin\Post\UpdateRequest;
+use App\Models\Category;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -30,7 +31,8 @@ class PostController extends BasePostController
     {
         $users = User::all();
         $title = $this->title;
-        return view('admin.posts.create', compact('users', 'title'));
+        $categories = Category::all();
+        return view('admin.posts.create', compact('users', 'categories', 'title'));
     }
 
     /**
@@ -61,7 +63,10 @@ class PostController extends BasePostController
     {
         $users = User::all();
         $title = $this->title;
-        return view('admin.posts.edit', compact('post', 'users', 'title'));
+        $categories = Category::all();
+        $categoryIds = $post->categories->pluck('id')->toArray();
+
+        return view('admin.posts.edit', compact('post', 'categories', 'categoryIds', 'users', 'title'));
     }
 
     /**

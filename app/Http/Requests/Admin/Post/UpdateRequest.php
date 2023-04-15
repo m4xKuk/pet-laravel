@@ -27,6 +27,8 @@ class UpdateRequest extends FormRequest
             'preview_image' => 'nullable|file',
             // 'main_image' => 'nullable|file',
             'user_id' => 'required|integer|exists:users,id',
+            'categoryIds' => 'nullable|array',
+            'categoryIds.*' => 'nullable|integer|exists:categories,id',
         ];
     }
 }
