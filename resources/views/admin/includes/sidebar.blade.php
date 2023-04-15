@@ -39,12 +39,18 @@
         with font-awesome or any other icon font library -->
 
                 <li class="nav-item">
-                    <a href="{{route('admin.posts.index')}}" class="nav-link">
+                    <a href="{{ route('admin.posts.index') }}" class="nav-link">
                         <i class="nav-icon fas fa-th"></i>
                         <p>
                             Posts
                             {{-- <span class="right badge badge-danger">New</span> --}}
                         </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('admin.categories.index') }}" class="nav-link">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>Categories</p>
                     </a>
                 </li>
             </ul>

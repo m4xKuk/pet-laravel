@@ -12,13 +12,15 @@ use Illuminate\Support\Str;
 
 class PostController extends BasePostController
 {
+    public $title = 'Posts';
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
         $posts = Post::paginate(8);
-        return view('admin.posts.index', compact('posts'));
+        $title = $this->title;
+        return view('admin.posts.index', compact('posts', 'title'));
     }
 
     /**
@@ -27,7 +29,8 @@ class PostController extends BasePostController
     public function create()
     {
         $users = User::all();
-        return view('admin.posts.create', compact('users'));
+        $title = $this->title;
+        return view('admin.posts.create', compact('users', 'title'));
     }
 
     /**
@@ -47,7 +50,8 @@ class PostController extends BasePostController
      */
     public function show(Post $post)
     {
-        return view('admin.posts.show', compact('post'));
+        $title = $this->title;
+        return view('admin.posts.show', compact('post', 'title'));
     }
 
     /**
@@ -56,7 +60,8 @@ class PostController extends BasePostController
     public function edit(Post $post)
     {
         $users = User::all();
-        return view('admin.posts.edit', compact('post', 'users'));
+        $title = $this->title;
+        return view('admin.posts.edit', compact('post', 'users', 'title'));
     }
 
     /**

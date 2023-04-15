@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('admin.layouts.main', ['title' => $title])
 
 @section('content')
 <div class="col-12 mb-2">
@@ -23,7 +23,7 @@
                     <td>{{ Str::limit($post->description, 20, '...') }}</td>
                     <td>{{ $post->author->name }}</td>
                     <td><a href="{{route('admin.posts.show', $post)}}"><i class="far fa-eye"></i></a></td>
-                    <td><i class="fas fa-edit"></i></td>
+                    <td><a href="{{route('admin.posts.edit', $post)}}"><i class="fas fa-edit"></i></a></td>
                     <td>
                         <form class="form-delete" action="{{route('admin.posts.destroy', $post)}}" method="POST">
                             @csrf

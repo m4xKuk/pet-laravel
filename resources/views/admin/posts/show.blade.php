@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('admin.layouts.main', ['title' => $title])
 
 @section('content')
     <div class="col-12 mb-2">
