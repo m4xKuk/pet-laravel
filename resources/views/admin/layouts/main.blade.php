@@ -101,6 +101,9 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             <!-- Content Header (Page header) -->
+            @php
+                $title = isset($title) ? $title : '';
+            @endphp
             @include('admin.includes.header', ['title' => $title])
             <!-- /.content-header -->
 

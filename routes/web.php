@@ -28,6 +28,8 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
     Route::resource('/posts', App\Http\Controllers\Admin\PostController::class);
 
     Route::resource('/categories', App\Http\Controllers\Admin\CategoryController::class);
+
+    Route::resource('/users', App\Http\Controllers\Admin\UserController::class);
 });
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
