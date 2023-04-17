@@ -14,9 +14,9 @@ use App\Http\Controllers\PostController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 Auth::routes();
 
@@ -34,4 +34,9 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth', 'a
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::resource('posts', PostController::class);
+// Route::resource('posts', PostController::class);
+
+Route::get('/', 'MainController@index')->name('main');
+Route::get('/blog', 'MainController@blog')->name('blog');
+Route::get('/about', 'MainController@about')->name('about');
+Route::get('/post/{post}', 'MainController@post')->name('post');
