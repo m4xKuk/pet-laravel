@@ -75,9 +75,10 @@ class PostController extends BasePostController
     public function update(UpdateRequest $request, Post $post)
     {
         $data = $request->validated();
+        $title = $this->title;
         $post = $this->services->update($data, $post);
 
-        return view('admin.posts.show', compact('post'));
+        return view('admin.posts.show', compact('post', 'title'));
     }
 
     /**

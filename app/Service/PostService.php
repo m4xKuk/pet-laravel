@@ -37,10 +37,19 @@ class PostService
 
     public function update($data, $post)
     {
+        if (isset($data['categoryIds'])) {
+            $categoryIds = $data['categoryIds'];
+            unset($data['categoryIds']);
+        }
+
         if (isset($data['preview_image'])) {
             $data['preview_image'] = Storage::disk('public')->put('/images', $data['preview_image']);
         }
         $post->update($data);
+
+        if (isset($categoryIds)) {
+            $post->categories()->attach($categoryIds);
+        }
 
         return $post;
     }
